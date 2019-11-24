@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,36 +33,24 @@
                     <h1>The Cookies Factory</h1>
                 </a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"> <?php if (isset($_SESSION['loginname'])) : ?>
-                                        <strong><?= 'Hello ' . "" . $_SESSION['loginname'] . ' !'; ?></strong>
-                                     <?php else : ?>
-                                        <strong><?= ' '; ?></strong>
-                                     <?php endif; ?></a></li>
-                    <li><a href="#">Chocolates chips</a></li>
-                    <li><a href="#">Nuts</a></li>
-                    <li><a href="#">Gluten full</a></li>
-<?php
-if (isset($_SESSION['loginname']) && isset($_COOKIE['cart']) && count($_COOKIE['cart']) != 0) {
-    $total = 0;
-    foreach ($_COOKIE['cart'] as $product => $quantity) {
-        $total += $quantity;
-    }
-               echo"<li><a href='/cart.php' class='btn btn-warning navbar-btn'>
-                        <span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span>
-                            Cart (" . $total . ")    
-                         </a></li>";
-}
-if (isset($_SESSION['loginname'])){
-               echo"<li><a href='../logout.php' class='btn btn-danger navbar-btn'>
-                        <span class='glyphicon glyphicon-off' aria-hidden='true'></span>
-                        Logout
-                        </a></li>";
-}?>
+                    <li><a href='index.php'>Back to login page</a></li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div>
     </nav>
 </header>
+<section>
+    <div class="container-fluid">
+        <div class="text-center">
+            <h1>You have been successfully logged out.</h1>
+        </div>
+    </div>
+</section>
+<?php
+session_unset();
+session_destroy();
+?>
+</body>
+</html>
